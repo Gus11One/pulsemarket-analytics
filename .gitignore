@@ -3,9 +3,13 @@ __pycache__/
 *.pyc
 .env
 
-# Data
-data/raw/*.csv
-data/staging/*.csv
+# Data (no versionar datasets)
+data/raw/
+data/staging/
+data/processed/
 
 # Notebooks
 .ipynb_checkpoints/
+
+# OS
+.DS_Store

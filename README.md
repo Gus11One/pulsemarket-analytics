@@ -1,113 +1,86 @@
-# PulseMarket Analytics Pipeline
+# 📊 PulseMarket Analytics – Data Pipeline & KPI Materialization
 
-## Overview
-End-to-end data analytics project simulating a real e-commerce environment.
-The project covers data ingestion, validation, transformation, and business metrics generation.
+## 📌 Descripción general
 
-## Tech Stack
-- **Python**
-- **Pandas**
-- **Pathlib**
-- **Git / GitHub**
-- **Jupyter Notebook**
+**PulseMarket Analytics** es un proyecto de **data analytics end-to-end** que implementa un pipeline de datos reproducible para procesar información transaccional de e-commerce, cargarla en una base de datos PostgreSQL (Neon) y **materializar KPIs clave** para análisis y visualización.
 
-## Project Structure
+El enfoque del proyecto es **ingenieril y analítico**, priorizando:
+- Limpieza y validación de datos
+- Buenas prácticas de ETL
+- Separación clara entre datos raw, processed y analytics
+- Seguridad de credenciales mediante variables de entorno
+
+---
+
+## 🏗️ Arquitectura del proyecto
+
+```
 pulsemarket-analytics/
-├── data/
-│ ├── raw/ # Original source data (immutable)
-│ ├── staging/ # Validated data with quality flags
-│ ├── processed/ # Cleaned and enriched datasets
-│ └── metrics/ # Business KPIs
 │
-├── notebooks/
-│ └── business_analysis.ipynb
+├── data/
+│   ├── raw/
+│   └── processed/
 │
 ├── src/
-│ ├── main.py # Pipeline orchestrator
-│ ├── validate.py # Data quality checks
-│ ├── transform.py # Data cleaning & enrichment
-│ └── metrics.py # KPI generation
+│   ├── transform/
+│   ├── load_processed_to_db.py
+│   ├── materialize_kpis.py
+│   └── db.py
 │
-├── README.md
+├── notebooks/
+├── .env.example
+├── .gitignore
 ├── requirements.txt
-└── .gitignore
-
-## What This Project Demonstrates
-
-- Data validation and quality checks
-- Layered data pipeline design
-- Business-oriented KPI definition
-- Analytical thinking and storytelling
-- Git best practices
-
+└── README.md
+```
 
 ---
 
-## Data Pipeline Design
+## ⚙️ Tecnologías utilizadas
 
-The pipeline is divided into clear and reusable layers:
-
-### 1. Raw
-- Original CSV files
-- No transformations applied
-- Acts as a source of truth
-
-### 2. Staging (Validation)
-- Data quality checks
-- Business rule validation
-- Flags invalid records instead of deleting them blindly
-
-### 3. Processed (Transformation)
-- Cleaned datasets
-- Enriched business columns (e.g. total item amount)
-- Ready for analytics and reporting
-
-### 4. Metrics
-- Aggregated KPIs
-- Business-oriented indicators
-- Output-ready for dashboards or SQL ingestion
+- Python 3.10+
+- Pandas
+- SQLAlchemy
+- PostgreSQL (Neon)
+- Matplotlib
+- Git & GitHub
 
 ---
 
-## Key KPIs Generated
+## 🔐 Seguridad
 
-- Total number of orders
-- Completed orders
-- Total revenue
-- Average revenue per order
-- Total sellers
-- Percentage of sellers with valid commission rates
-
-These metrics are exported as a single, business-ready CSV file.
+Las credenciales se gestionan mediante variables de entorno.
+El archivo `.env` está excluido del repositorio.
 
 ---
 
-## Business Analysis
+## 🔄 Flujo del pipeline
 
-A dedicated Jupyter Notebook (`business_analysis.ipynb`) provides:
-
-- Key observations from the KPIs
-- Identification of financial and operational risks
-- Actionable business recommendations
-- Clear analytical storytelling aimed at stakeholders
+1. Limpieza de datos
+2. Carga a PostgreSQL
+3. Materialización de KPIs
 
 ---
 
-## What This Project Demonstrates
+## 📈 KPIs
 
-- End-to-end data analytics pipeline design
-- Strong data validation and quality control practices
-- Separation of concerns across pipeline layers
-- Business-oriented metric definition
-- Analytical thinking and problem-solving
-- Clean Git commit history and project organization
+- Revenue diario
+- Revenue mensual
+- Top sellers por revenue
+- Número total de órdenes
 
 ---
 
-## How to Run the Project
-
-From the project root:
+## 🚀 Ejecución
 
 ```bash
-python src/main.py
-python src/metrics.py
+pip install -r requirements.txt
+python src/load_processed_to_db.py
+python src/materialize_kpis.py
+```
+
+---
+
+## 👤 Autor
+
+**Gustavo Aliaga**
